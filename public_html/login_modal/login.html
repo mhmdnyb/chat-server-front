@@ -14,9 +14,72 @@
     <link rel="stylesheet" href="/src/output.css" />
   </head>
   <body class="bg-dominant saira-condensed-medium tracking-wider">
+    <div
+      id="modal"
+      class="w-screen h-screen absolute top-0 hidden justify-center items-start"
+    >
+      <div
+        class="px-4 py-1.5 mt-3 bg-notif-background backdrop-blur-2xl border border-white/40 rounded-xl text-notif-text flex items-center justify-center"
+      >
+        <svg
+          class="inline-block"
+          width="30px"
+          height="30px"
+          viewBox="-0.5 0 56 56"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="#E53935"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <defs>
+              <filter
+                id="a"
+                width="200%"
+                height="200%"
+                x="-50%"
+                y="-50%"
+                filterUnits="objectBoundingBox"
+              >
+                <feOffset
+                  dy="1"
+                  in="SourceAlpha"
+                  result="shadowOffsetOuter1"
+                ></feOffset>
+                <feGaussianBlur
+                  stdDeviation="10"
+                  in="shadowOffsetOuter1"
+                  result="shadowBlurOuter1"
+                ></feGaussianBlur>
+                <feColorMatrix
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
+                  in="shadowBlurOuter1"
+                  result="shadowMatrixOuter1"
+                ></feColorMatrix>
+                <feMerge>
+                  <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                  <feMergeNode in="SourceGraphic"></feMergeNode>
+                </feMerge>
+              </filter>
+            </defs>
+            <path
+              fill-rule="evenodd"
+              d="M28 38c1.105 0 2-.895 2-2h-4c0 1.105.895 2 2 2zm0-20c3.441 0 6.882 3.529 7 6.697v3.636s2 1.167 2 2.672c0 2.043-1.34 2.995-2.993 2.995h-12.015c-1.64 0-2.993-1-2.993-2.995v-.509c0-.552.385-1.22.86-1.497l1.14-.665v-3.636c.118-3.168 3.559-6.697 7-6.697zm0 2c-2.277 0-4.92 2.589-5 4.697v4.785l-.992.579-1.14.665c.139-.081.132-.07.132-.231v.509c0 .729.289.995.993.995h12.015c.735 0 .993-.235.993-.995 0-.002-.115-.198-.385-.457-.244-.234-.498-.414-.623-.487l-.992-.579v-1.149l.001-3.562c-.081-2.183-2.724-4.771-5.001-4.771z"
+              filter="url(#a)"
+            ></path>
+          </g>
+        </svg>
+        <p id="error-msg"></p>
+      </div>
+    </div>
     <!-- transparent window and container -->
     <div class="w-screen h-screen flex justify-center items-center">
       <form
+        id="form"
         action="index.php"
         method="POST"
         class="saira-condensed-medium bg-linear-to-bl from-white/25 to-white/15 backdrop-blur-2xl border border-white/40 shadow-xl shadow-black pt-0 border-t-0 pb-3 pr-5 pl-3 flex flex-col justify-center rounded-xl gap-y-1.5 sm:w-80 w-full mx-2 overflow-hidden"
@@ -70,6 +133,7 @@
           </svg>
         </div>
         <button
+          id="login"
           class="bg-thirtypercent w-fit py-2 px-7 rounded-2xl mt-3 mx-auto text-lg transition-transform cursor-pointer hover:-translate-y-0.5 hover:scale-[1.02]"
         >
           Login
