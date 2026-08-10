@@ -66,14 +66,14 @@ import Links from "./links.js";
 const url = new Links();
 async function register() {
   const credentials = userInfo();
-  if (credentials == false) {
+  if (credentials === false) {
     return;
   }
   try {
     const response = await fetch(url.register, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userInfo()),
+      body: JSON.stringify(credentials),
     });
     // Response body
     const data = await response.json();
@@ -96,6 +96,13 @@ async function register() {
 
 btn.addEventListener("click", (e) => {
   e.preventDefault();
-
-  register();
+  const passwordField = document.querySelector("#password");
+  const cofirmField = document.querySelector("#confirmPassword");
+  try {
+    if (passwordField.value === cofirmField.value) {
+      register();
+    } else {
+      showError("Password Mismatch");
+    }
+  } catch (error) {}
 });
