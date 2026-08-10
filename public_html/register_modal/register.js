@@ -54,6 +54,10 @@ function showError(message) {
   msg.textContent = message;
   modal.classList.add("pop-up");
   modal.classList.replace("hidden", "flex");
+  setTimeout(() => {
+    modal.classList.replace("flex", "hidden");
+    modal.classList.remove("pop-up");
+  }, 6000);
 }
 // function createElement(element) {
 //   const e = document.createElement(element);
@@ -83,11 +87,6 @@ async function register() {
     } else {
       console.log(`failed because ${data.status}`);
       showError(data.data.message);
-      setTimeout(() => {
-        const modal = document.querySelector("#modal");
-        modal.classList.replace("flex", "hidden");
-        modal.classList.remove("pop-up");
-      }, 6000);
     }
   } catch (error) {
     console.log(error);
