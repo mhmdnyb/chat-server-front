@@ -1,0 +1,101 @@
+// show password icon
+const showPw = document.querySelector("#show-pw");
+const passwordInput = document.querySelectorAll('input[type="password"]');
+
+showPw.addEventListener("click", (e) => {
+  if (passwordInput[0].attributes[1].nodeValue == "password") {
+    for (let i = 0; i < passwordInput.length; i++) {
+      passwordInput[i].attributes[1].nodeValue = "text";
+    }
+  } else {
+    for (let i = 0; i < passwordInput.length; i++) {
+      passwordInput[i].attributes[1].nodeValue = "password";
+    }
+  }
+});
+
+// TOS checkbox
+
+const cb1 = document.querySelector("#tos");
+const btn = document.querySelector("#register");
+
+cb1.addEventListener("input", (e) => {
+  if (btn.classList.contains("low-opacity")) {
+    btn.classList.remove("low-opacity");
+  } else {
+    btn.classList.add("low-opacity");
+  }
+});
+
+//Return of userInfo
+function userInfo() {
+  const form = document.querySelector("#form");
+  const credentials = {
+    username: form.children[1].value,
+    password: form.children[2].value,
+    birthDate: `${form.children[4].children[0].value}-${form.children[4].children[1].value}-${form.children[4].children[2].value}`,
+  };
+
+  for (let key in credentials) {
+    if (!credentials[key]) {
+      showError("Fill in the fields!");
+      return false;
+    }
+  }
+  return credentials;
+}
+
+//Create element and append (modal)
+
+function showError(message) {
+  const msg = document.querySelector("#error-msg");
+  const modal = document.querySelector("#modal");
+
+  msg.textContent = message;
+  modal.classList.add("pop-up");
+  modal.classList.replace("hidden", "flex");
+}
+// function createElement(element) {
+//   const e = document.createElement(element);
+
+// }
+
+// Request to DB for registering POST
+import Links from "./links.js";
+
+const url = new Links();
+async function register() {
+  const credentials = userInfo();
+  if (credentials == false) {
+    return;
+  }
+  try {
+    const response = await fetch(url.register, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userInfo()),
+    });
+    // Response body
+    const data = await response.json();
+    //Error modal
+    if (response.ok) {
+      console.log(data);
+    } else {
+      console.log(`failed because ${data.status}`);
+      showError(data.data.message);
+      setTimeout(() => {
+        const modal = document.querySelector("#modal");
+        modal.classList.replace("flex", "hidden");
+        modal.classList.remove("pop-up");
+      }, 6000);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+btn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  register();
+});

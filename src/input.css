@@ -1,0 +1,102 @@
+@import "tailwindcss";
+@theme {
+  --color-dominant: #6366f1;
+  --color-thirtypercent: #448085;
+  --color-tenpercent: #d5cabd;
+  --color-signUp: #2196f3;
+  --color-signUpHover: #2196f3cc;
+  --color-notif-background: #ffebee;
+  --color-notif-text: #c62828;
+  --color-notif-svg: #e53935;
+}
+
+@layer {
+  input {
+    text-align: start;
+    color: #e5e7eb;
+  }
+  #year,
+  #month,
+  #day {
+    text-align: center;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    width: 80px;
+  }
+}
+@utility grid-col-custom {
+  grid-template-columns: repeat(2, 500px);
+}
+@utility low-opacity {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+.saira-condensed-thin {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.saira-condensed-extralight {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.saira-condensed-light {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.saira-condensed-regular {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.saira-condensed-medium {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.saira-condensed-semibold {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.saira-condensed-bold {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/*
+Source - https://stackoverflow.com/a/4298216
+Posted by antonj, modified by community. See post 'Timeline' for change history
+Retrieved 2026-08-05, License - CC BY-SA 4.0
+*/
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+@keyframes notification {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@utility pop-up {
+  animation-name: notification;
+  animation-duration: 400ms;
+}
