@@ -12,12 +12,12 @@
       rel="stylesheet"
     />
   </head>
-  <body class="bg-dominant saira-condensed-semibold">
+  <body class="bg-dominant saira-condensed-semibold text-tenpercent">
     <main>
       <!-- dashboard section -->
       <section class="w-screen h-screen flex justify-center items-center">
         <div
-          class="bg-linear-to-bl from-white/25 to-white/15 backdrop-blur-2xl border border-white/40 shadow-xl px-4 py-2 rounded-xl"
+          class="bg-linear-to-bl from-white/25 to-white/15 backdrop-blur-2xl border border-white/40 shadow-xl px-4 py-2 rounded-xl space-y-2.5"
         >
           <!-- imageChange sect -->
           <div class="rounded-full flex items-center justify-evenly">
@@ -37,10 +37,32 @@
             />
           </div>
           <h2
-            class="text-tenpercent text-shadow-sm text-shadow-black/20 text-center text-3xl saira-condensed-bold border-b border-b-black/50"
+            class="text-tenpercent text-shadow-sm text-shadow-black/20 text-center text-xl saira-condensed-bold border-b border-b-black/50"
           >
             Your Account
           </h2>
+          <!-- username sect -->
+          <div class="flex items-center justify-between text-lg">
+            <h3>Username</h3>
+            <div>
+              <h3 class="inline mr-1.5 text-white" id="username"></h3>
+              <button
+                class="bg-thirtypercent px-5 rounded-2xl text-black/70 cursor-pointer"
+              >
+                Change
+              </button>
+            </div>
+          </div>
+          <!-- password sect -->
+          <div class="flex items-center justify-between text-lg">
+            <h3>Password</h3>
+
+            <button
+              class="bg-thirtypercent px-5 rounded-2xl text-black/70 cursor-pointer"
+            >
+              Change
+            </button>
+          </div>
         </div>
       </section>
     </main>
