@@ -22,8 +22,10 @@ const btn = document.querySelector("#register");
 cb1.addEventListener("input", (e) => {
   if (btn.classList.contains("low-opacity")) {
     btn.classList.remove("low-opacity");
+    btn.removeAttribute("disabled");
   } else {
     btn.classList.add("low-opacity");
+    btn.setAttribute("disabled", ``);
   }
 });
 
