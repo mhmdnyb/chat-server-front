@@ -47,11 +47,17 @@ function userInfo() {
   return credentials;
 }
 
+function redirection(url) {
+  window.location = url;
+}
 //Create element and append (modal)
 
-function showError(message) {
+function showError(message, time = 3500, sound = "error", redirect = false) {
   const msg = document.querySelector("#error-msg");
   const modal = document.querySelector("#modal");
+  const sounds = { confirm: "/audio/confirm.mp3", error: "/audio/error.mp3" };
+  const audio = new Audio(sounds[sound]);
+  audio.play();
 
   msg.textContent = message;
   modal.classList.add("pop-up");
@@ -59,7 +65,10 @@ function showError(message) {
   setTimeout(() => {
     modal.classList.replace("flex", "hidden");
     modal.classList.remove("pop-up");
-  }, 6000);
+    if (redirect == true) {
+      redirection("/public_html/login_modal/login.html");
+    }
+  }, time);
 }
 // function createElement(element) {
 //   const e = document.createElement(element);
@@ -85,7 +94,7 @@ async function register() {
     const data = await response.json();
     //Error modal
     if (response.ok) {
-      console.log(data);
+      showError("Success!", 3000, "confirm", true);
     } else {
       console.log(`failed because ${data.status}`);
       showError(data.data.message);
