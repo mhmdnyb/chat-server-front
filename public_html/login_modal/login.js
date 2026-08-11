@@ -60,7 +60,7 @@ async function login() {
     //Error modal
     if (response.ok) {
       console.log(data.data.token);
-      document.cookie = `token=${data.data.token};expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}`;
+      document.cookie = `token=${data.data.token};expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()};path=/;`;
     } else {
       console.log(`failed because ${data.status}`);
       showError(data.data.message);
