@@ -97,6 +97,14 @@ input::-webkit-inner-spin-button {
     transform: translateX(0px);
   }
 }
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 @utility pop-up {
   animation-name: notification;
   animation-duration: 400ms;
