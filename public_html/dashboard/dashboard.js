@@ -1,6 +1,8 @@
 //fetch username using token
 const url = "http://127.0.0.1:8080/dashboard";
 const username = document.querySelector("#username");
+const modal = document.querySelector("#modal");
+const change = document.querySelector("#change");
 function getToken() {
   return document.cookie.split("=")[1];
 }
@@ -23,3 +25,11 @@ async function setUserName() {
   }
 }
 setUserName();
+
+modal.addEventListener("click", (e) => {
+  modal.classList.replace("flex", "hidden");
+});
+
+change.addEventListener("click", (e) => {
+  e.stopPropagation();
+});

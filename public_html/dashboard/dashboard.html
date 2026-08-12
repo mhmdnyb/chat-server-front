@@ -11,8 +11,28 @@
       href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    <script>
+      function changeInfo() {
+        const modal = document.querySelector("#modal");
+        modal.classList.replace("hidden", "flex");
+        modal.classList.add("fade-in");
+      }
+    </script>
   </head>
   <body class="bg-dominant saira-condensed-semibold text-tenpercent">
+    <!-- change modal -->
+    <div
+      style="animation-name: fade-in; animation-duration: 500ms"
+      id="modal"
+      class="w-screen h-screen absolute top-0 hidden justify-center items-center z-10 bg-black/30 backdrop-blur-md"
+    >
+      <input
+        type="text"
+        name="change"
+        id="change"
+        class="border-2 border-tenpercent rounded-full pl-3 focus:outline-blue-400"
+      />
+    </div>
     <main>
       <!-- dashboard section -->
       <section class="w-screen h-screen flex justify-center items-center">
@@ -37,7 +57,7 @@
             />
           </div>
           <h2
-            class="text-tenpercent text-shadow-sm text-shadow-black/20 text-center text-xl saira-condensed-bold border-b border-b-black/50"
+            class="text-tenpercent text-shadow-sm text-shadow-black/20 text-center text-xl saira-condensed-bold border-b border-b-black/50 animate-pulse"
           >
             Your Account
           </h2>
@@ -47,6 +67,8 @@
             <div>
               <h3 class="inline mr-1.5 text-white" id="username"></h3>
               <button
+                onclick="changeInfo()"
+                id="changeUser"
                 class="bg-thirtypercent px-5 rounded-2xl text-black/70 cursor-pointer"
               >
                 Change
@@ -58,6 +80,7 @@
             <h3>Password</h3>
 
             <button
+              onclick="changeInfo()"
               class="bg-thirtypercent px-5 rounded-2xl text-black/70 cursor-pointer"
             >
               Change
