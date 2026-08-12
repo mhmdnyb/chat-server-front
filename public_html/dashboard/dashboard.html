@@ -24,14 +24,21 @@
     <div
       style="animation-name: fade-in; animation-duration: 500ms"
       id="modal"
-      class="w-screen h-screen absolute top-0 hidden justify-center items-center z-10 bg-black/30 backdrop-blur-md"
+      class="w-screen h-screen absolute top-0 hidden flex-col justify-center items-center z-10 bg-black/30 backdrop-blur-md"
     >
       <input
         type="text"
         name="change"
         id="change"
-        class="border-2 border-tenpercent rounded-full pl-3 focus:outline-blue-400"
+        class="border-2 border-tenpercent rounded-md pl-3 focus:outline-blue-400"
+        autocomplete="off"
       />
+      <button
+        id="save"
+        class="bg-[#2A8C8C] text-white px-5 rounded-2xl cursor-pointer mt-2"
+      >
+        Save Change
+      </button>
     </div>
     <main>
       <!-- dashboard section -->
