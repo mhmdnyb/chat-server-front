@@ -18,6 +18,7 @@ async function setUserName() {
       username.textContent = data.data.username;
     }
   } catch (error) {
+    username.textContent = "NaN/ERR";
     console.log(error);
   }
 }
