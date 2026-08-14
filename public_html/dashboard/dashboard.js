@@ -4,7 +4,7 @@ const username = document.querySelector("#username");
 const modal = document.querySelector("#modal");
 const change = document.querySelector("#change");
 const saveUsername = document.querySelector("#saveUsername");
-
+const loading = document.querySelector("#loading");
 function getToken() {
   return document.cookie.split("=")[1];
 }
@@ -28,6 +28,7 @@ async function setUserName() {
       },
     });
     if (response.ok) {
+      loading.classList.replace("flex", "hidden");
       const data = await response.json();
       username.textContent = data.data.username;
     } else {
