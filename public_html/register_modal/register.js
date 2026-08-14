@@ -32,9 +32,10 @@ cb1.addEventListener("input", (e) => {
 //Return of userInfo
 function userInfo() {
   const form = document.querySelector("#form");
+
   const credentials = {
-    username: form.children[1].value,
-    password: form.children[2].value,
+    username: form.children[1].children[0].value,
+    password: form.children[2].children[0].value,
     birthDate: `${form.children[4].children[0].value}-${form.children[4].children[1].value}-${form.children[4].children[2].value}`,
   };
 
