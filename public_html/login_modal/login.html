@@ -15,7 +15,7 @@
   </head>
   <body class="bg-dominant saira-condensed-medium tracking-wider">
     <header
-      class="py-2.5 bg-[#448085CC] backdrop-blur-2xl shadow-2xs mx-auto rounded-b-2xl text-tenpercent border-b border-b-white/35 tracking-wide saira-condensed-medium sm:text-lg w-screen fixed"
+      class="py-2.5 bg-linear-to-tr from-thirtypercent to-thirtypercent-lower backdrop-blur-2xl shadow-2xs mx-auto rounded-b-2xl text-tenpercent border-b border-b-white/35 tracking-wide saira-condensed-medium sm:text-lg w-screen fixed"
     >
       <ul class="uppercase flex items-center justify-around">
         <li class="sm:mr-56">
@@ -146,7 +146,7 @@
         id="form"
         action="index.php"
         method="POST"
-        class="saira-condensed-medium bg-linear-to-bl from-white/25 to-white/15 backdrop-blur-2xl border border-white/40 shadow-xl shadow-black pt-0 border-t-0 pb-3 pr-5 pl-3 flex flex-col justify-center rounded-xl gap-y-1.5 sm:w-80 w-full mx-2 overflow-hidden"
+        class="saira-condensed-medium bg-linear-to-bl from-white/25 to-white/15 backdrop-blur-2xl border border-white/40 pt-0 border-t-0 pb-3 pr-5 pl-3 flex flex-col justify-center rounded-xl gap-y-1.5 sm:w-80 w-full mx-2 overflow-hidden"
       >
         <h2
           class="text-center mb-5 saira-condensed-bold text-tenpercent text-xl text-shadow-sm text-shadow-black bg-[#1E1B4B] py-1.5 rounded-b-2xl w-full"
@@ -158,11 +158,11 @@
           name="username"
           id="username"
           placeholder="Username"
-          class="border-2 border-tenpercent rounded-full pl-3"
+          class="border-2 border-tenpercent rounded-lg pl-3 focus:outline-0 focus:ring-2 focus:ring-white/50 w-full focus:transition-all duration-50 min-h-8 py-0.5"
         />
 
         <div
-          class="border-2 border-tenpercent rounded-full pl-3 flex items-center"
+          class="border-2 border-tenpercent rounded-lg pl-3 flex items-center has-focus:outline-0 has-focus:ring-2 has-focus:ring-white/50 min-h-8 has-focus:transtion-all py-0.5"
         >
           <input
             class="focus:outline-0 w-full"
@@ -198,7 +198,7 @@
         </div>
         <button
           id="login"
-          class="bg-thirtypercent w-fit py-2 px-7 rounded-2xl mt-3 mx-auto text-lg transition-transform cursor-pointer hover:-translate-y-0.5 hover:scale-[1.02]"
+          class="bg-thirtypercent w-fit py-2 px-7 rounded-2xl mt-3 mx-auto text-lg transition-transform cursor-pointer hover:-translate-y-0.5 hover:scale-[1.02] hover:ring-2 hover:ring-[#8DB8BC]"
         >
           Login
         </button>
