@@ -5,6 +5,7 @@ const modal = document.querySelector("#modal");
 const change = document.querySelector("#change");
 const saveUsername = document.querySelector("#saveUsername");
 const loading = document.querySelector("#loading");
+const uid = document.querySelector("#uid");
 function getToken() {
   return document.cookie.split("=")[1];
 }
@@ -31,6 +32,8 @@ async function setUserName() {
       loading.classList.replace("flex", "hidden");
       const data = await response.json();
       username.textContent = data.data.username;
+      uid.textContent = data.data.userId;
+      console.log(data);
     } else {
       username.textContent = "NaN/ERR";
     }
