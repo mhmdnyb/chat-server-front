@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @theme {
   --color-dominant: #6366f1;
   --color-thirtypercent: #448085;
@@ -9,8 +10,13 @@
   --color-notif-background: #ffebee;
   --color-notif-text: #c62828;
   --color-notif-svg: #e53935;
+  --font-saira-condensed: "Saira Condensed", sans-serif;
 }
-
+@utility font-saira-medium {
+  font-family: var(--font-saira-condensed);
+  font-weight: 600;
+  font-style: normal;
+}
 @layer {
   input {
     text-align: start;
