@@ -35,7 +35,7 @@ function userInfo() {
 
   const credentials = {
     username: form.children[2].children[0].value,
-    password: form.children[2].children[0].value,
+    password: form.children[3].children[0].value,
     birthDate: `${form.children[5].children[0].value}-${form.children[5].children[1].value}-${form.children[5].children[2].value}`,
   };
 
@@ -45,6 +45,7 @@ function userInfo() {
       return false;
     }
   }
+  console.log(credentials);
   return credentials;
 }
 
