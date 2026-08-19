@@ -15,8 +15,14 @@
   <body class="bg-dominant font-saira-condensed tracking-wider">
     <section class="h-screen w-screen flex items-center justify-center">
       <div
-        class="bg-linear-to-br from-white/30 to-white/20 rounded-xl border border-white/60 backdrop-blur-2xl shadow-md shadow-black/30 py-3.5 px-3.5 space-y-1.5"
+        class="bg-linear-to-br from-white/30 to-white/20 rounded-xl border border-white/60 backdrop-blur-2xl shadow-md shadow-black/30 py-3.5 px-3.5 space-y-1.5 relative"
       >
+        <div
+          class="absolute top-0 right-2.5 text-white/70 text-lg cursor-pointer"
+          id="hideProfile"
+        >
+          x
+        </div>
         <img
           class="rounded-full outline-2 outline-black/30 w-15 h-15 sm:w-25 sm:h-25 mx-auto"
           src="/images/placeholder.webp"
@@ -67,4 +73,5 @@
       </div>
     </section>
   </body>
+  <script src="./profile.js"></script>
 </html>
