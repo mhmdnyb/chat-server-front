@@ -1,3 +1,4 @@
+import { showError, stringToHTML, modalString } from "../index.js";
 // show password icon
 const showPw = document.querySelector("#show-pw");
 const passwordInput = document.querySelectorAll('input[type="password"]');
@@ -54,24 +55,6 @@ function redirection(url) {
 }
 //Create element and append (modal)
 
-function showError(message, time = 3500, sound = "error", redirect = false) {
-  const msg = document.querySelector("#error-msg");
-  const modal = document.querySelector("#modal");
-  const sounds = { confirm: "/audio/confirm.mp3", error: "/audio/error.mp3" };
-  const audio = new Audio(sounds[sound]);
-  audio.play();
-
-  msg.textContent = message;
-  modal.classList.add("pop-up");
-  modal.classList.replace("hidden", "flex");
-  setTimeout(() => {
-    modal.classList.replace("flex", "hidden");
-    modal.classList.remove("pop-up");
-    if (redirect == true) {
-      redirection("/public_html/login_modal/login.html");
-    }
-  }, time);
-}
 // function createElement(element) {
 //   const e = document.createElement(element);
 
@@ -96,7 +79,12 @@ async function register() {
     const data = await response.json();
     //Error modal
     if (response.ok) {
-      showError("Success!", 3000, "confirm", true);
+      showError(
+        "Success!",
+        "confirm",
+        true,
+        "/public_html/login_modal/login.html",
+      );
     } else {
       console.log(`failed because ${data.status}`);
       showError(data.data.message);

@@ -1,3 +1,4 @@
+import { showError, stringToHTML, modalString } from "../index.js";
 //fetch username using token
 const url = "http://127.0.0.1:8080/dashboard";
 const username = document.querySelector("#username");
@@ -77,7 +78,7 @@ async function changeInfo({ username = null }) {
       const data = await response.json();
       replaceCookie(data.data.token);
 
-      showError("Done!", 3500, "confirm");
+      showError("Done!", "confirm");
     } else {
       showError(data.data.message);
     }

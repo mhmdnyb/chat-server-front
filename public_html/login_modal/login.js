@@ -1,3 +1,4 @@
+import { showError, stringToHTML, modalString } from "../index.js";
 // show password icon
 const showPw = document.querySelector("#show-pw");
 const passwordInput = document.querySelector("#password");
@@ -32,18 +33,6 @@ function userInfo() {
   return credentials;
 }
 
-function showError(message) {
-  const msg = document.querySelector("#error-msg");
-  const modal = document.querySelector("#modal");
-
-  msg.textContent = message;
-  modal.classList.add("pop-up");
-  modal.classList.replace("hidden", "flex");
-  setTimeout(() => {
-    modal.classList.replace("flex", "hidden");
-    modal.classList.remove("pop-up");
-  }, 6000);
-}
 async function login() {
   const credentials = userInfo();
   if (credentials === false) {
@@ -59,7 +48,7 @@ async function login() {
     const data = await response.json();
     //Error modal
     if (response.ok) {
-      console.log(data.data.token);
+      showError("Logged in!", "confirm");
       document.cookie = `token=${data.data.token};expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()};path=/;`;
     } else {
       console.log(`failed because ${data.status}`);
