@@ -93,4 +93,32 @@ function showError(message, sound = "error", redirect = false, url = "") {
   }, 3500);
 }
 
-export { showError, stringToHTML, modalString };
+async function checkAuth(url) {
+  const token = getToken();
+
+  try {
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    if (data.status == "BAD_REQUEST") {
+      window.location =
+        "http://127.0.0.1:5500/public_html/dashboard/dashboard.html";
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function getToken() {
+  const token = document.cookie.split("=")[1];
+  if (token == undefined) {
+    return "";
+  }
+  return token;
+}
+
+export { showError, stringToHTML, modalString, checkAuth, getToken };
