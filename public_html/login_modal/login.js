@@ -1,4 +1,10 @@
-import { showError, stringToHTML, modalString } from "../index.js";
+import {
+  showError,
+  stringToHTML,
+  modalString,
+  checkAuth,
+  getToken,
+} from "../index.js";
 // show password icon
 const showPw = document.querySelector("#show-pw");
 const passwordInput = document.querySelector("#password");
@@ -63,3 +69,5 @@ loginButton.addEventListener("click", (e) => {
   e.preventDefault();
   login();
 });
+
+checkAuth(LOGIN_URL);

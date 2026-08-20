@@ -1,8 +1,14 @@
-import { showError, stringToHTML, modalString } from "../index.js";
+import {
+  showError,
+  stringToHTML,
+  modalString,
+  checkAuth,
+  getToken,
+} from "../index.js";
 // show password icon
 const showPw = document.querySelector("#show-pw");
 const passwordInput = document.querySelectorAll('input[type="password"]');
-
+const REGISTER_URL = `http://127.0.0.1:8080/register`;
 showPw.addEventListener("click", (e) => {
   if (passwordInput[0].attributes[1].nodeValue == "password") {
     for (let i = 0; i < passwordInput.length; i++) {
@@ -50,16 +56,6 @@ function userInfo() {
   return credentials;
 }
 
-function redirection(url) {
-  window.location = url;
-}
-//Create element and append (modal)
-
-// function createElement(element) {
-//   const e = document.createElement(element);
-
-// }
-
 // Request to DB for registering POST
 import Links from "./links.js";
 
@@ -106,3 +102,5 @@ btn.addEventListener("click", (e) => {
     }
   } catch (error) {}
 });
+
+checkAuth(REGISTER_URL);
