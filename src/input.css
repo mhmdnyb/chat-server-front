@@ -31,7 +31,21 @@
     padding-bottom: 1px;
     width: 80px;
   }
+  @keyframes setting-anim {
+    from {
+      transform: rotate(90deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
 }
+
+@utility setting-anim {
+  animation-name: setting-anim;
+  animation-duration: 500ms;
+}
+
 @utility grid-col-custom {
   grid-template-columns: repeat(2, 500px);
 }
