@@ -5,13 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <link rel="stylesheet" href="/src/output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body class="bg-dominant">
     <main>
       <section class="w-screen h-screen flex items-center justify-center">
         <!-- chat page -->
         <div
-          class="sm:h-200 sm:w-120 min-w-90 min-h-150 bg-linear-to-br from-[#11151ccc] to-[#11151c] border border-white/30 rounded-xl shadow-md shadow-black/30 relative"
+          class="sm:h-200 sm:w-120 min-w-90 min-h-150 bg-linear-to-br from-[#11151ccc] to-[#11151c] border border-white/30 rounded-xl shadow-md shadow-black/30 relative px-1 overflow-y-scroll"
         >
           <!-- search bar -->
           <form
@@ -56,6 +62,8 @@
               />
             </div>
           </form>
+          <!-- message cont -->
+          <section class="w-full mt-15 space-y-1.5"></section>
         </div>
       </section>
     </main>
