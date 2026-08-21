@@ -6,5 +6,58 @@
     <title>Home</title>
     <link rel="stylesheet" href="/src/output.css" />
   </head>
-  <body class="bg-dominant"></body>
+  <body class="bg-dominant">
+    <main>
+      <section class="w-screen h-screen flex items-center justify-center">
+        <!-- chat page -->
+        <div
+          class="sm:h-200 sm:w-120 min-w-90 min-h-150 bg-linear-to-br from-[#11151ccc] to-[#11151c] border border-white/30 rounded-xl shadow-md shadow-black/30 relative"
+        >
+          <!-- search bar -->
+          <form
+            action="#"
+            method="post"
+            class="absolute translate-x-1/2 right-1/2 top-1.5"
+          >
+            <div
+              class="bg-linear-to-tr from-white/20 to-white/10 backdrop-blur-3xl border border-white/40 rounded-full pl-3 flex items-center has-focus:outline-0 has-focus:ring-2 has-focus:ring-white/50 min-h-8 has-focus:transtion-all py-0.5 text-gray-200 w-70"
+            >
+              <svg
+                width="25px"
+                height="25px"
+                viewBox="0 0 24 24"
+                fill="#cccccc"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M11 6C13.7614 6 16 8.23858 16 11M16.6588 16.6549L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
+                    stroke="#000000"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </g>
+              </svg>
+              <input
+                autocomplete="off"
+                class="py-0.5 focus:cursor-none rounded-full pl-3 focus:outline-0 w-full"
+                placeholder="Search"
+                type="text"
+                name="search"
+                id="search"
+                class="w-full"
+              />
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
