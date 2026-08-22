@@ -16,7 +16,8 @@
     <main>
       <section class="w-screen h-screen flex items-center justify-center">
         <div
-          class="flex flex-col items-center sm:h-200 sm:w-120 min-w-90 min-h-150 bg-linear-to-br from-[#11151ccc] to-[#11151c] border border-white/30 rounded-xl shadow-md shadow-black/30 py-2 relative"
+          id="chat-page"
+          class="flex flex-col items-center justify-center sm:h-200 sm:w-120 min-w-90 min-h-150 bg-linear-to-br from-[#11151ccc] to-[#11151c] border border-white/30 rounded-xl shadow-md shadow-black/30 py-2 relative"
         >
           <form action="#" method="post" class="w-70 z-10 shrink-0 mt-2">
             <div
@@ -51,12 +52,13 @@
 
           <!-- Message Container -->
           <section
-            class="w-full flex-1 overflow-y-auto mt-4 px-2 text-tenpercent"
+            class="w-full flex-1 overflow-y-auto mt-4 px-0.5 text-tenpercent"
           ></section>
 
           <!-- setting icon-->
           <svg
-            class="hover:scale-[1.02] hover:setting-anim transition-transform cursor-pointer shrink-0 mt-auto mb-6"
+            id="setting"
+            class="hover:scale-[1.02] hover:setting-anim transition-transform cursor-pointer shrink-0 mt-auto mb-3"
             width="40px"
             height="40px"
             viewBox="0 0 24 24"
@@ -87,4 +89,5 @@
       </section>
     </main>
   </body>
+  <script src="./index.js" type="module"></script>
 </html>
