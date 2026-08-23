@@ -8,6 +8,7 @@ function stringToHTML(string) {
 }
 
 //home
+
 const settingModalString = ` <section id="setting-page"
             class="bg-white/10 w-full h-full flex flex-col items-center justify-center absolute z-30 backdrop-blur-lg  rounded-xl text-tenpercent gap-y-5 tracking-wide text-lg"
           >
@@ -269,6 +270,7 @@ const createModalString = `<!-- channel creation -->
           </div>
         </label>
       </div>`;
+
 const chatPage = document.querySelector("#chat-page");
 const setting = document.querySelector("#setting");
 const settingModal = stringToHTML(settingModalString);
@@ -281,9 +283,20 @@ setting.addEventListener("click", (e) => {
 
   const settingPage = document.querySelector("#setting-page");
   const previousInner = settingPage.innerHTML;
+  const funcReset = resetInner();
+
+  //add closure to keep the state in memory and resetinner
+  function resetInner() {
+    let previousInner = settingPage.innerHTML;
+    function reset() {
+      settingPage.innerHTML = previousInner;
+    }
+    return reset;
+  }
+  //eventlisten for the settingpage modal
   settingPage.addEventListener("click", (e) => {
     if (e.target.id === `setting-page`) {
-      settingPage.innerHTML = previousInner;
+      funcReset();
       settingModal.remove();
     } else if (e.target.textContent == `Logout`) {
       delCookie();
