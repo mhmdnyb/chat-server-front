@@ -12,12 +12,17 @@
   --color-notif-svg: #e53935;
   --font-saira-condensed: "Saira Condensed", sans-serif;
 }
+
 @utility font-saira-medium {
   font-family: var(--font-saira-condensed);
   font-weight: 600;
   font-style: normal;
 }
 @layer {
+  html {
+    scroll-behavior: smooth;
+  }
+
   input {
     text-align: start;
     color: #e5e7eb;
