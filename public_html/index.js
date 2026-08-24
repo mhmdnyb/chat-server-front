@@ -11,7 +11,7 @@ function delCookie() {
 const modalString = `<!-- Error Modal -->
     <div
       id="modal"
-      class="w-screen h-screen absolute top-0 flex justify-center items-start pop-up"
+      class="w-screen h-screen absolute top-0 flex justify-center items-start pop-up z-50"
     >
       <div
         class="px-4 py-1.5 mt-10 bg-notif-background backdrop-blur-2xl border border-white/40 rounded-xl text-notif-text flex items-center justify-center"
