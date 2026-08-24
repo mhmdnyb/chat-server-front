@@ -1,5 +1,6 @@
 import { delCookie } from "./index.js";
 import { channelModal } from "./createChannel/channel.js";
+import { groupModal } from "./createChannel/group.js";
 function stringToHTML(string) {
   const temp = document.createElement("template");
   temp.innerHTML = string.trim();
@@ -310,6 +311,7 @@ setting.addEventListener("click", (e) => {
     } else if (e.target.id == `createChannel`) {
       channelModal();
     } else if (e.target.id == `createGroup`) {
+      groupModal();
     }
   });
 });
