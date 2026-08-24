@@ -1,5 +1,7 @@
 import { stringToHTML, getToken } from "../index.js";
 import { settingPage } from "../home.js";
+import { showError } from "../index.js";
+const CREATE_URL = `http://127.0.0.1:8080/home/create-group`;
 const groupModalString = `<form
       id="groupform"
       action="http://127.0.0.1:8080/home/create-group"
@@ -26,7 +28,7 @@ const groupModalString = `<form
         />
       </div>
       <label for="private" class="group cursor-pointer">
-        <input type="checkbox" name="isClosed" id="private" class="sr-only" />
+        <input type="checkbox" name="closedGroup" id="private" class="sr-only" />
         <div class="flex items-center justify-between w-65">
           <p>Private Group?</p>
           <div
@@ -46,6 +48,27 @@ const groupModalString = `<form
         Create
       </button>
     </form>`;
+async function createGroup(data) {
+  console.log(data);
+  try {
+    const response = await fetch(CREATE_URL, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    if (response.ok) {
+      const body = await response.json();
+      showError("Success!", "confirm");
+    } else {
+      showError("Error!");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
 export function groupModal() {
   settingPage.innerHTML = groupModalString;
   const form = document.querySelector("#groupform");
@@ -53,6 +76,11 @@ export function groupModal() {
     e.preventDefault();
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
-    console.log(data);
+    if (data.closedGroup) {
+      const newData = { ...data, closedGroup: true };
+      createGroup(newData);
+    } else {
+      createGroup(data);
+    }
   });
 }
