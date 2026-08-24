@@ -24,11 +24,8 @@ const loginButton = document.querySelector("#login");
 //userInfo grabber
 function userInfo() {
   const form = document.querySelector("#form");
-
-  const credentials = {
-    username: form.children[1].value,
-    password: form.children[2].children[0].value,
-  };
+  const formData = new FormData(form);
+  const credentials = Object.fromEntries(formData);
 
   for (let key in credentials) {
     if (!credentials[key]) {
