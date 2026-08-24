@@ -1,5 +1,5 @@
 import { delCookie } from "./index.js";
-
+import { channelModal } from "./createChannel/channel.js";
 function stringToHTML(string) {
   const temp = document.createElement("template");
   temp.innerHTML = string.trim();
@@ -8,11 +8,20 @@ function stringToHTML(string) {
 }
 
 //home
+//add closure to keep the state in memory and resetinner
+
+function resetInner(element) {
+  let previousInner = element.innerHTML;
+  function reset() {
+    element.innerHTML = previousInner;
+  }
+  return reset;
+}
 
 const settingModalString = ` <section id="setting-page"
             class="bg-white/10 w-full h-full flex flex-col items-center justify-center absolute z-30 backdrop-blur-lg  rounded-xl text-tenpercent gap-y-5 tracking-wide text-lg"
           >
-            <div
+            <div id="create"
               class="flex items-center justify-between gap-x-1.5 cursor-pointer hover:opacity-85 transition-opacity"
             >
               <svg
@@ -64,7 +73,7 @@ const settingModalString = ` <section id="setting-page"
               </svg>
               <h2>Create</h2>
             </div>
-            <div
+            <div id="dashboard"
               class="flex items-center justify-between gap-x-1.5 cursor-pointer hover:opacity-85 transition-opacity"
             >
               <svg
@@ -103,7 +112,7 @@ const settingModalString = ` <section id="setting-page"
               </svg>
               <h2>Dashboard</h2>
             </div>
-            <div
+            <div id="logout"
               class="flex items-center justify-between gap-x-1.5 cursor-pointer hover:opacity-85 transition-opacity"
             >
               <svg
@@ -270,6 +279,8 @@ const createModalString = `<!-- channel creation -->
           </div>
         </label>
       </div>`;
+let settingPage;
+let funcReset;
 
 const chatPage = document.querySelector("#chat-page");
 const setting = document.querySelector("#setting");
@@ -281,29 +292,26 @@ setting.addEventListener("click", (e) => {
   }, 1000);
   chatPage.appendChild(settingModal);
 
-  const settingPage = document.querySelector("#setting-page");
-  const previousInner = settingPage.innerHTML;
-  const funcReset = resetInner();
+  settingPage = document.querySelector("#setting-page");
+  funcReset = resetInner(settingPage);
 
-  //add closure to keep the state in memory and resetinner
-  function resetInner() {
-    let previousInner = settingPage.innerHTML;
-    function reset() {
-      settingPage.innerHTML = previousInner;
-    }
-    return reset;
-  }
   //eventlisten for the settingpage modal
   settingPage.addEventListener("click", (e) => {
+    //switch case if I had time
     if (e.target.id === `setting-page`) {
       funcReset();
       settingModal.remove();
-    } else if (e.target.textContent == `Logout`) {
+    } else if (e.target.closest("#logout")) {
       delCookie();
-    } else if (e.target.textContent == `Dashboard`) {
+    } else if (e.target.closest("#dashboard")) {
       window.location = `./dashboard/dashboard.html`;
-    } else if (e.target.textContent == `Create`) {
+    } else if (e.target.closest("#create")) {
       settingPage.innerHTML = createModalString.trim();
+    } else if (e.target.id == `createChannel`) {
+      channelModal();
+    } else if (e.target.id == `createGroup`) {
     }
   });
 });
+
+export { resetInner, settingPage };
