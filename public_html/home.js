@@ -1,5 +1,5 @@
 import { delCookie } from "./index.js";
-import { channelModal } from "./createChannel/channel.js";
+import { channelModal } from "../public_html/createChannel/channel.js";
 import { groupModal } from "./createChannel/group.js";
 function stringToHTML(string) {
   const temp = document.createElement("template");
