@@ -48,6 +48,7 @@ class ProgressBar {
 }
 function RegisterPage() {
   const [type, setType] = useState("password");
+  const [opacity, setOpacity] = useState(false);
   const formRef = useRef();
   const tosRef = useRef();
   const progressRef = useRef();
@@ -234,6 +235,11 @@ function RegisterPage() {
               ref={tosRef}
               onInput={() => {
                 temp.validateTOS(tosRef.current, progressRef.current);
+                if (opacity) {
+                  setOpacity(false);
+                } else {
+                  setOpacity(true);
+                }
               }}
             />
             <label htmlFor="tos" className="text-sm">
@@ -248,9 +254,9 @@ function RegisterPage() {
           </div>
 
           <button
-            disabled
+            disabled={!opacity}
             id="register"
-            className="bg-thirtypercent w-fit py-2 px-7 rounded-2xl mt-3 mx-auto text-lg transition-all cursor-pointer low-opacity hover:ring-2 hover:ring-[#8DB8BC]"
+            className={`bg-thirtypercent w-fit py-2 px-7 rounded-2xl mt-3 mx-auto text-lg transition-all cursor-pointer  hover:ring-2 hover:ring-[#8DB8BC] ${!opacity && "low-opacity"}`}
           >
             Register
           </button>
