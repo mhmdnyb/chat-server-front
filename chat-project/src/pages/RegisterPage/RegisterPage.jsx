@@ -47,6 +47,25 @@ class ProgressBar {
   }
 }
 function RegisterPage() {
+  async function register(credentials) {
+    try {
+      const response = await fetch("http://127.0.0.1:8080/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(credentials),
+      });
+      // Response body
+      const data = await response.json();
+      //Error modal
+      if (response.ok) {
+        console.log(data.data);
+      } else {
+        console.log(`failed because ${data.status}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const [type, setType] = useState("password");
   const [opacity, setOpacity] = useState(false);
   const formRef = useRef();
@@ -254,6 +273,15 @@ function RegisterPage() {
           </div>
 
           <button
+            onClick={(e) => {
+              e.preventDefault();
+              const form = new FormData(formRef.current);
+              form.delete("confirmPassword");
+              form.delete("tos");
+
+              const data = Object.fromEntries(form);
+              register(data);
+            }}
             disabled={!opacity}
             id="register"
             className={`bg-thirtypercent w-fit py-2 px-7 rounded-2xl mt-3 mx-auto text-lg transition-all cursor-pointer  hover:ring-2 hover:ring-[#8DB8BC] ${!opacity && "low-opacity"}`}
