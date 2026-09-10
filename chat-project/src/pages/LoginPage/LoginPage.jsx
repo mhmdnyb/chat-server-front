@@ -1,17 +1,52 @@
 import "./LoginPage.css";
 import Header from "../../components/Header/Header";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import Modal from "../../components/Modal/Modal";
 function LoginPage() {
+  const [open, setOpen] = useState([]);
+  const formRef = useRef();
   const [type, setType] = useState("password");
   {
     document.querySelector("body").style.backgroundColor = "#6366f1";
+  }
+  async function login(credentials) {
+    try {
+      const response = await fetch("http://127.0.0.1:8080/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(credentials),
+      });
+      // Response body
+      const data = await response.json();
+      //Error modal
+      if (response.ok) {
+        setOpen([{ text: "hello", sound: "confirm" }]);
+        console.log(data.data);
+      } else {
+        console.log(`failed because ${data.status}`);
+        setOpen([{ text: "error", sound: "error" }]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <>
       <title>Login</title>
       <Header></Header>
+      {open.map((modal) => {
+        return (
+          <Modal
+            setOpen={setOpen}
+            text={modal.text}
+            sound={modal.sound}
+            key={crypto.randomUUID()}
+          ></Modal>
+        );
+      })}
       <div className="w-screen h-screen flex justify-center items-center">
         <form
+          ref={formRef}
           id="form"
           action="index.php"
           method="POST"
@@ -117,6 +152,12 @@ function LoginPage() {
             )}
           </div>
           <button
+            onClick={(e) => {
+              e.preventDefault();
+              const form = new FormData(formRef.current);
+              const data = Object.fromEntries(form);
+              login(data);
+            }}
             id="login"
             className="bg-thirtypercent w-fit py-2 px-7 rounded-2xl mt-3 mx-auto text-lg transition-transform cursor-pointer hover:-translate-y-0.5 hover:scale-[1.02] hover:ring-2 hover:ring-[#8DB8BC]"
           >

@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import confirmAudio from "../../assets/audio/confirm.mp3";
 import errorAudio from "../../assets/audio/error.mp3";
-function Modal({ text, sound }) {
+function Modal({ text, sound, setOpen }) {
   const dialogRef = useRef();
   useEffect(() => {
     dialogRef.current.showModal();
@@ -11,6 +11,7 @@ function Modal({ text, sound }) {
     const audio = new Audio(sounds[sound]);
     audio.play();
     setTimeout(() => {
+      setOpen([]);
       dialogRef.current.close();
     }, 3000);
   }, [text]);
