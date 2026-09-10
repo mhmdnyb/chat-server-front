@@ -2,7 +2,7 @@ import "./RegisterPage.css";
 import Header from "../../components/Header/Header";
 import { useState } from "react";
 import { useRef } from "react";
-
+import Modal from "../../components/Modal/Modal";
 class ProgressBar {
   constructor() {
     this.username = false;
@@ -47,6 +47,13 @@ class ProgressBar {
   }
 }
 function RegisterPage() {
+  const [type, setType] = useState("password");
+  const [opacity, setOpacity] = useState(false);
+  const [open, setOpen] = useState([]);
+
+  const formRef = useRef();
+  const tosRef = useRef();
+  const progressRef = useRef();
   async function register(credentials) {
     try {
       const response = await fetch("http://127.0.0.1:8080/register", {
@@ -58,19 +65,16 @@ function RegisterPage() {
       const data = await response.json();
       //Error modal
       if (response.ok) {
+        setOpen([{ text: "hello", sound: "confirm" }]);
         console.log(data.data);
       } else {
         console.log(`failed because ${data.status}`);
+        setOpen([{ text: "error", sound: "error" }]);
       }
     } catch (error) {
       console.log(error);
     }
   }
-  const [type, setType] = useState("password");
-  const [opacity, setOpacity] = useState(false);
-  const formRef = useRef();
-  const tosRef = useRef();
-  const progressRef = useRef();
 
   {
     document.querySelector("body").style.backgroundColor = "#6366f1";
@@ -79,7 +83,18 @@ function RegisterPage() {
 
   return (
     <>
+      <title>Register</title>
       <Header></Header>
+      {open.map((modal) => {
+        return (
+          <Modal
+            text={modal.text}
+            sound={modal.sound}
+            key={crypto.randomUUID()}
+          ></Modal>
+        );
+      })}
+
       <section className="w-screen h-screen flex justify-center items-center">
         <form
           ref={formRef}

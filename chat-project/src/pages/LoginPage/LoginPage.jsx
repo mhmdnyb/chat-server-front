@@ -8,6 +8,7 @@ function LoginPage() {
   }
   return (
     <>
+      <title>Login</title>
       <Header></Header>
       <div className="w-screen h-screen flex justify-center items-center">
         <form
