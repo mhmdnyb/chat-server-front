@@ -51,13 +51,13 @@ function Header() {
         </li>
         <li className="flex items-center sm:gap-x-10 gap-x-5">
           <a
-            href="/public_html/login_modal/login.html"
+            href="/login"
             className="relative before:content-[''] before:absolute before:left-0 before:-bottom-1 before:h-px before:w-0 before:bg-red-500 before:rounded-full before:transition-all before:duration-300 hover:before:w-full"
           >
             login
           </a>
           <a
-            href="/public_html/register_modal/register.html"
+            href="/"
             className="bg-signUp hover:bg-signUpHover transition-colors px-3 py-1 rounded-full"
           >
             sign up

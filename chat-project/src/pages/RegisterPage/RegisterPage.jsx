@@ -133,7 +133,7 @@ function RegisterPage() {
             Already Registered?
             <a
               className="text-sky-800 hover:text-sky-700 transition-color text-shadow-xsm text-shadow-black/30"
-              href="/public_html/login_modal/login.html"
+              href="/login"
             >
               Login!
             </a>

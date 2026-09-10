@@ -68,7 +68,7 @@ function LoginPage() {
             Not Registered?
             <a
               class="text-sky-800 hover:text-sky-700 transition-colors"
-              href="/public_html/register_modal/register.html"
+              href="/"
             >
               Register!
             </a>
