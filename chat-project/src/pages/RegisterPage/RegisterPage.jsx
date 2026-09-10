@@ -240,7 +240,7 @@ function RegisterPage() {
               By Registering You Agree With Our
               <a
                 href="#"
-                className="text-tenpercent underline hover:text-sky-700 transition-colors text-shadow-xsm text-shadow-black/30"
+                className="text-tenpercent underline hover:text-sky-700 transition-colors text-shadow-xsm text-shadow-black/30 p-1"
               >
                 TOS
               </a>
@@ -257,7 +257,7 @@ function RegisterPage() {
           <p className="mx-auto my-3">
             Already Registered?
             <a
-              className="text-sky-800 hover:text-sky-700 transition-color text-shadow-xsm text-shadow-black/30"
+              className="text-sky-800 hover:text-sky-700 transition-color text-shadow-xsm text-shadow-black/30 p-1"
               href="/login"
             >
               Login!
