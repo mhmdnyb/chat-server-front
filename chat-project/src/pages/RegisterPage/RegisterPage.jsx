@@ -37,13 +37,12 @@ class ProgressBar {
     }
   }
   validateTOS(tosRef, progressRef) {
-    if (tosRef.checked) {
-      this.width += 50;
-      progressRef.setAttribute("style", `width:${this.width}%`);
-    } else {
-      this.width -= 50;
-      progressRef.setAttribute("style", `width:${this.width}%`);
-    }
+    const step = 50;
+
+    const nextWidth = tosRef.checked ? this.width + step : this.width - step;
+    this.width = Math.min(Math.max(nextWidth, 0), 100);
+
+    progressRef.style.width = `${this.width}%`;
   }
 }
 function RegisterPage() {
@@ -114,7 +113,7 @@ function RegisterPage() {
             <div
               ref={progressRef}
               id="progress"
-              style={{ width: 0 }}
+              style={{ width: "0%" }}
               className="h-full bg-linear-to-r from-[#b1afce] to-[#3f39f1] rounded-full transition-all duration-300"
             ></div>
           </div>
@@ -268,6 +267,7 @@ function RegisterPage() {
               id="tos"
               ref={tosRef}
               onInput={() => {
+                console.log(tosRef.current);
                 temp.validateTOS(tosRef.current, progressRef.current);
                 if (opacity) {
                   setOpacity(false);
