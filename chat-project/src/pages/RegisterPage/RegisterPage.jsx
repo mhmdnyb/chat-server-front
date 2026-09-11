@@ -87,6 +87,7 @@ function RegisterPage() {
       {open.map((modal) => {
         return (
           <Modal
+            setOpen={setOpen}
             text={modal.text}
             sound={modal.sound}
             key={crypto.randomUUID()}
