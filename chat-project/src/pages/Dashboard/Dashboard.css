@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @theme {
   --color-dominant: #6366f1;
   --color-thirtypercent: #448085;
@@ -10,4 +11,127 @@
   --color-notif-text: #c62828;
   --color-notif-svg: #e53935;
   --font-saira-condensed: "Saira Condensed", sans-serif;
+}
+
+@utility font-saira-medium {
+  font-family: var(--font-saira-condensed);
+  font-weight: 600;
+  font-style: normal;
+}
+@layer {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  input {
+    text-align: start;
+    color: #e5e7eb;
+  }
+
+  #year,
+  #month,
+  #day {
+    text-align: center;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    width: 80px;
+  }
+  @keyframes setting-anim {
+    from {
+      transform: rotate(90deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
+}
+
+@utility setting-anim {
+  animation-name: setting-anim;
+  animation-duration: 500ms;
+}
+
+@utility grid-col-custom {
+  grid-template-columns: repeat(2, 500px);
+}
+@utility low-opacity {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+.saira-condensed-thin {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.saira-condensed-extralight {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.saira-condensed-light {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.saira-condensed-regular {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.saira-condensed-medium {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.saira-condensed-semibold {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.saira-condensed-bold {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/*
+Source - https://stackoverflow.com/a/4298216
+Posted by antonj, modified by community. See post 'Timeline' for change history
+Retrieved 2026-08-05, License - CC BY-SA 4.0
+*/
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+@keyframes notification {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@utility pop-up {
+  animation-name: notification;
+  animation-duration: 400ms;
 }
