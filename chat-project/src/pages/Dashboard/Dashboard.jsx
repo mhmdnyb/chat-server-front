@@ -2,9 +2,11 @@ import "./Dashboard.css";
 import UserProfileImage from "../../assets/placeholder.webp";
 import Loading from "../../components/Loading/Loading";
 import { useState, useEffect } from "react";
+import UsernameChange from "../../components/UsernameChange/UsernameChange";
 function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [info, setInfo] = useState({ username: "", uid: "" });
+  const [username, setUserName] = useState(false);
 
   useEffect(() => {
     function getToken() {
@@ -42,6 +44,10 @@ function Dashboard() {
     <>
       <title>Dashboard</title>
       {loading && <Loading></Loading>}
+      <UsernameChange
+        username={username}
+        setUsername={setUserName}
+      ></UsernameChange>
       <section className="w-screen h-screen flex justify-center items-center saira-condensed-medium">
         <div className="bg-linear-to-bl from-white/25 to-white/15 backdrop-blur-2xl border border-white/40 shadow-xl px-4 py-2 rounded-xl space-y-2.5">
           <div className="rounded-full flex items-center justify-evenly">
@@ -72,7 +78,9 @@ function Dashboard() {
                 {info.username}
               </h3>
               <button
-                // onclick="changeInfo()"
+                onClick={() => {
+                  setUserName(true);
+                }}
                 id="changeUser"
                 className="bg-thirtypercent px-5 rounded-2xl text-black/70 cursor-pointer"
               >
