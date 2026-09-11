@@ -6,6 +6,9 @@ function LoginPage() {
   const [open, setOpen] = useState([]);
   const formRef = useRef();
   const [type, setType] = useState("password");
+  function setCookie(token) {
+    document.cookie = `token=${token};expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()};path=/;`;
+  }
   {
     document.querySelector("body").style.backgroundColor = "#6366f1";
   }
@@ -21,7 +24,7 @@ function LoginPage() {
       //Error modal
       if (response.ok) {
         setOpen([{ text: "hello", sound: "confirm" }]);
-        console.log(data.data);
+        setCookie(data.data.token);
       } else {
         console.log(`failed because ${data.status}`);
         setOpen([{ text: "error", sound: "error" }]);
