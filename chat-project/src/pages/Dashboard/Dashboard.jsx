@@ -23,14 +23,13 @@ function Dashboard() {
         if (response.ok) {
           const data = await response.json();
 
-          console.log(data);
           setLoading(false);
           setInfo({ username: data.data.username, uid: data.data.userId });
         } else {
-          // username.textContent = "NaN/ERR";
+          setInfo({ username: "NaN", uid: "Nan" });
         }
       } catch (error) {
-        // username.textContent = "NaN/ERR";
+        setInfo({ username: "NaN", uid: "Nan" });
         console.log(error);
       }
     }
