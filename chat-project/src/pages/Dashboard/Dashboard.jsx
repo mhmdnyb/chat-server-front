@@ -3,6 +3,7 @@ import UserProfileImage from "../../assets/placeholder.webp";
 import Loading from "../../components/Loading/Loading";
 import { useState, useEffect } from "react";
 import UsernameChange from "../../components/UsernameChange/UsernameChange";
+import Header from "../../components/Header/Header";
 function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [info, setInfo] = useState({ username: "", uid: "" });
@@ -41,6 +42,7 @@ function Dashboard() {
   }
   return (
     <>
+      <Header isLoggedIn={true}></Header>
       <title>Dashboard</title>
       {loading && <Loading></Loading>}
       <UsernameChange

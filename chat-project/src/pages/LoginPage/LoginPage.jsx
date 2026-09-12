@@ -36,7 +36,7 @@ function LoginPage() {
   return (
     <>
       <title>Login</title>
-      <Header></Header>
+      <Header isLoggedIn={false}></Header>
       {open.map((modal) => {
         return (
           <Modal
