@@ -1,5 +1,5 @@
 import "./Header.css";
-function Header() {
+function Header({ isLoggedIn }) {
   return (
     <header className="py-2.5 bg-[#448085CC] backdrop-blur-2xl shadow-2xs mx-auto rounded-b-2xl text-tenpercent border-b border-b-white/35 tracking-wide saira-condensed-medium sm:text-lg w-screen fixed">
       <ul className="uppercase flex items-center justify-around">
@@ -50,18 +50,29 @@ function Header() {
           </a>
         </li>
         <li className="flex items-center sm:gap-x-10 gap-x-5">
-          <a
-            href="/login"
-            className="relative before:content-[''] before:absolute before:left-0 before:-bottom-1 before:h-px before:w-0 before:bg-red-500 before:rounded-full before:transition-all before:duration-300 hover:before:w-full"
-          >
-            login
-          </a>
-          <a
-            href="/"
-            className="bg-signUp hover:bg-signUpHover transition-colors px-3 py-1 rounded-full"
-          >
-            sign up
-          </a>
+          {!isLoggedIn ? (
+            <>
+              <a
+                href="/login"
+                className="relative before:content-[''] before:absolute before:left-0 before:-bottom-1 before:h-px before:w-0 before:bg-red-500 before:rounded-full before:transition-all before:duration-300 hover:before:w-full"
+              >
+                login
+              </a>
+              <a
+                href="/"
+                className="bg-signUp hover:bg-signUpHover transition-colors px-3 py-1 rounded-full"
+              >
+                sign up
+              </a>
+            </>
+          ) : (
+            <a
+              href="/home"
+              className="bg-signUp hover:bg-signUpHover transition-colors px-3 py-1 rounded-full"
+            >
+              home
+            </a>
+          )}
         </li>
       </ul>
     </header>
