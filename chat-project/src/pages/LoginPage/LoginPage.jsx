@@ -1,11 +1,37 @@
 import "./LoginPage.css";
 import Header from "../../components/Header/Header";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Modal from "../../components/Modal/Modal";
+import { Navigate } from "react-router";
 function LoginPage() {
+  const [isLogged, setLogged] = useState(false);
   const [open, setOpen] = useState([]);
   const formRef = useRef();
   const [type, setType] = useState("password");
+  useEffect(() => {
+    async function checkAuth() {
+      const token = document.cookie.split("=")[1];
+
+      try {
+        const response = await fetch(`http://127.0.0.1:8080/register`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        if (data.status == "BAD_REQUEST") {
+          setLogged(true);
+        } else {
+          document.cookie = `token=${document.cookie.split("=")[1]};expires=${new Date(Date.now()).toUTCString()};path=/;`;
+        }
+      } catch (error) {
+        console.log("logged-in");
+        console.log(error);
+      }
+    }
+    checkAuth();
+  }, []);
   function setCookie(token) {
     document.cookie = `token=${token};expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()};path=/;`;
   }
@@ -32,6 +58,9 @@ function LoginPage() {
     } catch (error) {
       console.log(error);
     }
+  }
+  if (isLogged) {
+    return <Navigate to={"/dashboard"} replace={true}></Navigate>;
   }
   return (
     <>

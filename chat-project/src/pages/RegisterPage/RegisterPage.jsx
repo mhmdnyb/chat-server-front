@@ -1,8 +1,9 @@
 import "./RegisterPage.css";
 import Header from "../../components/Header/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
 import Modal from "../../components/Modal/Modal";
+import { Navigate } from "react-router";
 class ProgressBar {
   constructor() {
     this.username = false;
@@ -46,9 +47,34 @@ class ProgressBar {
   }
 }
 function RegisterPage() {
+  const [isLogged, setLogged] = useState(false);
   const [type, setType] = useState("password");
   const [opacity, setOpacity] = useState(false);
   const [open, setOpen] = useState([]);
+  useEffect(() => {
+    async function checkAuth() {
+      const token = document.cookie.split("=")[1];
+
+      try {
+        const response = await fetch(`http://127.0.0.1:8080/register`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        if (data.status == "BAD_REQUEST") {
+          setLogged(true);
+        } else {
+          document.cookie = `token=${document.cookie.split("=")[1]};expires=${new Date(Date.now()).toUTCString()};path=/;`;
+        }
+      } catch (error) {
+        console.log("logged-in");
+        console.log(error);
+      }
+    }
+    checkAuth();
+  }, []);
 
   const formRef = useRef();
   const tosRef = useRef();
@@ -74,11 +100,15 @@ function RegisterPage() {
       console.log(error);
     }
   }
-
   {
     document.querySelector("body").style.backgroundColor = "#6366f1";
   }
+
   const temp = new ProgressBar();
+
+  if (isLogged) {
+    return <Navigate to={"/dashboard"} replace={true}></Navigate>;
+  }
 
   return (
     <>
