@@ -1,7 +1,9 @@
 import "./Dashboard.css";
+import { Link } from "react-router";
 function Dashboard() {
   return (
-    <div
+    <Link
+      to={"/dashboard"}
       id="dashboard"
       className="flex items-center justify-between gap-x-1.5 cursor-pointer hover:opacity-85 transition-opacity"
     >
@@ -40,7 +42,7 @@ function Dashboard() {
         </g>
       </svg>
       <h2>Dashboard</h2>
-    </div>
+    </Link>
   );
 }
 export default Dashboard;
