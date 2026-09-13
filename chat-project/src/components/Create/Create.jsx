@@ -1,7 +1,12 @@
 import "./Create.css";
-function Create() {
+function Create({ setStep }) {
   return (
     <div
+      onClick={(e) => {
+        if (e.target.closest("#create")) {
+          setStep(1);
+        }
+      }}
       id="create"
       className="flex items-center justify-between gap-x-1.5 cursor-pointer hover:opacity-85 transition-opacity"
     >
