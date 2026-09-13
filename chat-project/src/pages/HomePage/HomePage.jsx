@@ -46,7 +46,10 @@ function HomePage() {
               id="root"
               className="w-full flex-1 overflow-y-auto mt-4 px-0.5 text-tenpercent"
             >
-              <ChatMessage></ChatMessage>
+              <ChatMessage
+                name={"ali"}
+                lastMsg={"hello how are you doing"}
+              ></ChatMessage>
             </section>
 
             <svg
