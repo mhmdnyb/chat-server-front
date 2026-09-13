@@ -1,9 +1,14 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./UsernameChange.css";
 import Modal from "../Modal/Modal";
 function UsernameChange({ username, setUsername }) {
   const [open, setOpen] = useState([]);
   const inputRef = useRef();
+  useEffect(() => {
+    if (username) {
+      inputRef.current.focus();
+    }
+  }, [username]);
   function getToken() {
     return document.cookie.split("=")[1];
   }
