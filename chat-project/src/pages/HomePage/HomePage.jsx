@@ -1,6 +1,9 @@
 import "./HomePage.css";
 import ChatMessage from "../../components/ChatMessage/ChatMessage.jsx";
+import SettingModal from "../../components/SettingModal/SettingModal.jsx";
+import { useState } from "react";
 function HomePage() {
+  const [setting, setSetting] = useState(false);
   {
     document.querySelector("body").style.backgroundColor = "#6366f1";
   }
@@ -13,6 +16,7 @@ function HomePage() {
             id="chat-page"
             className="flex flex-col items-center justify-center sm:h-200 sm:w-120 w-screen h-screen m-2 bg-linear-to-br from-[#11151ccc] to-[#11151c] border border-white/30 rounded-xl shadow-md shadow-black/30 py-2 relative"
           >
+            {setting && <SettingModal setSetting={setSetting}></SettingModal>}
             <form action="#" method="post" className="w-70 z-10 shrink-0 mt-2">
               <div className="bg-linear-to-tr from-white/20 to-white/10 backdrop-blur-3xl border border-white/40 rounded-full pl-3 flex items-center has-focus:outline-0 has-focus:ring-2 has-focus:ring-white/50 min-h-8 has-focus:transition-all py-0.5 text-gray-200 w-full">
                 <svg
@@ -53,6 +57,9 @@ function HomePage() {
             </section>
 
             <svg
+              onClick={() => {
+                setSetting(true);
+              }}
               id="setting"
               className="hover:scale-[1.02] hover:setting-anim transition-transform cursor-pointer shrink-0 mt-auto mb-3"
               width="40px"
