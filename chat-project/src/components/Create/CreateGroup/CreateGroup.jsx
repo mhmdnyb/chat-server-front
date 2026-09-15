@@ -9,6 +9,7 @@ function CreateGroup() {
     >
       <div className="w-65">
         <input
+          required
           type="text"
           name="name"
           id="groupName"
@@ -19,6 +20,7 @@ function CreateGroup() {
 
       <div className="w-65">
         <input
+          required
           type="text"
           name="description"
           id="description"

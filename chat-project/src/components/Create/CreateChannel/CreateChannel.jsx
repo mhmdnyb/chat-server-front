@@ -8,6 +8,7 @@ function CreateChannel() {
     >
       <div className="w-65">
         <input
+          required
           type="text"
           name="name"
           id="channelName"
@@ -18,6 +19,7 @@ function CreateChannel() {
 
       <div className="w-65">
         <input
+          required
           type="text"
           name="publicId"
           id="username"
@@ -28,6 +30,7 @@ function CreateChannel() {
 
       <div className="w-65">
         <input
+          required
           type="text"
           name="description"
           id="description"
