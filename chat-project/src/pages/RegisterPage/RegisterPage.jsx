@@ -90,11 +90,12 @@ function RegisterPage() {
       const data = await response.json();
       //Error modal
       if (response.ok) {
-        setOpen([{ text: "hello", sound: "confirm" }]);
-        console.log(data.data);
+        setOpen([{ text: "Success!", sound: "confirm" }]);
+        setTimeout(() => {
+          window.location = "/login";
+        }, 3000);
       } else {
-        console.log(`failed because ${data.status}`);
-        setOpen([{ text: "error", sound: "error" }]);
+        setOpen([{ text: data.data.message, sound: "error" }]);
       }
     } catch (error) {
       console.log(error);

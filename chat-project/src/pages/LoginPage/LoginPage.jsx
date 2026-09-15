@@ -49,8 +49,11 @@ function LoginPage() {
       const data = await response.json();
       //Error modal
       if (response.ok) {
-        setOpen([{ text: "hello", sound: "confirm" }]);
+        setOpen([{ text: "Welcome back!", sound: "confirm" }]);
         setCookie(data.data.token);
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       } else {
         console.log(`failed because ${data.status}`);
         setOpen([{ text: "error", sound: "error" }]);
