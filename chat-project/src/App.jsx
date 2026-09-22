@@ -7,6 +7,7 @@ import ProtectedRoutes from "./utils/ProtectedRoutes";
 import PublicRoutes from "./utils/PrivateRoutes";
 import "./App.css";
 function App() {
+  
   return (
     <Routes>
       <Route element={<PublicRoutes></PublicRoutes>}>

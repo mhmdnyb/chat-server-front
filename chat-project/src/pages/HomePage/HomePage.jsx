@@ -1,9 +1,22 @@
 import "./HomePage.css";
 import ChatMessage from "../../components/ChatMessage/ChatMessage.jsx";
 import SettingModal from "../../components/SettingModal/SettingModal.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { socket } from "../../data/socket.jsx";
 function HomePage() {
   const [setting, setSetting] = useState(false);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    socket.onopen = () => {
+      console.log("test");
+    };
+    socket.onmessage = (e) => {
+      setData([...data, ...JSON.parse(e.data)]);
+    };
+    return () => {
+      socket.close();
+    };
+  }, [data]);
 
   return (
     <>
@@ -48,10 +61,15 @@ function HomePage() {
               id="root"
               className="w-full flex-1 overflow-y-auto mt-4 px-0.5 text-tenpercent"
             >
-              <ChatMessage
-                name={"ali"}
-                lastMsg={"hello how are you doing"}
-              ></ChatMessage>
+              {data.map((message, index) => {
+                return (
+                  <ChatMessage
+                    key={index}
+                    name={message.name}
+                    lastMsg={message.lastMessage}
+                  ></ChatMessage>
+                );
+              })}
             </section>
 
             <svg
