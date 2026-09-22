@@ -1,11 +1,12 @@
 import "./LoginPage.css";
 import Header from "../../components/Header/Header";
 import { useState, useRef, useEffect } from "react";
-import Modal from "../../components/Modal/Modal";
+import { Link } from "react-router";
 import { Navigate } from "react-router";
+import toast from "react-hot-toast";
 function LoginPage() {
   const [isLogged, setLogged] = useState(false);
-  const [open, setOpen] = useState([]);
+
   const formRef = useRef();
   const [type, setType] = useState("password");
   useEffect(() => {
@@ -35,9 +36,7 @@ function LoginPage() {
   function setCookie(token) {
     document.cookie = `token=${token};expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()};path=/;`;
   }
-  {
-    document.querySelector("body").style.backgroundColor = "#6366f1";
-  }
+
   async function login(credentials) {
     try {
       const response = await fetch("http://127.0.0.1:8080/login", {
@@ -49,14 +48,14 @@ function LoginPage() {
       const data = await response.json();
       //Error modal
       if (response.ok) {
-        setOpen([{ text: "Welcome back!", sound: "confirm" }]);
+        toast.success("Welcome back!");
         setCookie(data.data.token);
         setTimeout(() => {
           window.location.reload();
         }, 3000);
       } else {
         console.log(`failed because ${data.status}`);
-        setOpen([{ text: "error", sound: "error" }]);
+        toast.error(data.data.status);
       }
     } catch (error) {
       console.log(error);
@@ -69,16 +68,7 @@ function LoginPage() {
     <>
       <title>Login</title>
       <Header isLoggedIn={false}></Header>
-      {open.map((modal) => {
-        return (
-          <Modal
-            setOpen={setOpen}
-            text={modal.text}
-            sound={modal.sound}
-            key={crypto.randomUUID()}
-          ></Modal>
-        );
-      })}
+
       <div className="w-screen h-screen flex justify-center items-center">
         <form
           ref={formRef}
@@ -200,12 +190,12 @@ function LoginPage() {
           </button>
           <p className="mx-auto mt-3">
             Not Registered?
-            <a
+            <Link
               className="text-sky-800 hover:text-sky-700 transition-colors p-1"
-              href="/"
+              to="/"
             >
               Register!
-            </a>
+            </Link>
           </p>
         </form>
       </div>

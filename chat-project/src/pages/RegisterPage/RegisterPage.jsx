@@ -2,8 +2,9 @@ import "./RegisterPage.css";
 import Header from "../../components/Header/Header";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
-import Modal from "../../components/Modal/Modal";
+import { Link } from "react-router";
 import { Navigate } from "react-router";
+import toast from "react-hot-toast";
 class ProgressBar {
   constructor() {
     this.username = false;
@@ -50,7 +51,7 @@ function RegisterPage() {
   const [isLogged, setLogged] = useState(false);
   const [type, setType] = useState("password");
   const [opacity, setOpacity] = useState(false);
-  const [open, setOpen] = useState([]);
+
   useEffect(() => {
     async function checkAuth() {
       const token = document.cookie.split("=")[1];
@@ -90,19 +91,16 @@ function RegisterPage() {
       const data = await response.json();
       //Error modal
       if (response.ok) {
-        setOpen([{ text: "Success!", sound: "confirm" }]);
+        toast.success("Success!");
         setTimeout(() => {
           window.location = "/login";
         }, 3000);
       } else {
-        setOpen([{ text: data.data.message, sound: "error" }]);
+        toast.error("An error occured!");
       }
     } catch (error) {
       console.log(error);
     }
-  }
-  {
-    document.querySelector("body").style.backgroundColor = "#6366f1";
   }
 
   const temp = new ProgressBar();
@@ -115,16 +113,6 @@ function RegisterPage() {
     <>
       <title>Register</title>
       <Header isLoggedIn={false}></Header>
-      {open.map((modal) => {
-        return (
-          <Modal
-            setOpen={setOpen}
-            text={modal.text}
-            sound={modal.sound}
-            key={crypto.randomUUID()}
-          ></Modal>
-        );
-      })}
 
       <section className="w-screen h-screen flex justify-center items-center">
         <form
@@ -337,12 +325,12 @@ function RegisterPage() {
           </button>
           <p className="mx-auto my-3">
             Already Registered?
-            <a
+            <Link
               className="text-sky-800 hover:text-sky-700 transition-color text-shadow-xsm text-shadow-black/30 p-1"
-              href="/login"
+              to="/login"
             >
               Login!
-            </a>
+            </Link>
           </p>
         </form>
       </section>
