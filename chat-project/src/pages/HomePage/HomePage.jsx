@@ -2,11 +2,14 @@ import "./HomePage.css";
 import ChatMessage from "../../components/ChatMessage/ChatMessage.jsx";
 import SettingModal from "../../components/SettingModal/SettingModal.jsx";
 import { useEffect, useState } from "react";
-import { socket } from "../../data/socket.jsx";
+
 function HomePage() {
   const [setting, setSetting] = useState(false);
   const [data, setData] = useState([]);
   useEffect(() => {
+    const socket = new WebSocket(
+      `http://localhost:8080/ws?token=${document.cookie.split("=")[1]}/user/queue/home`,
+    );
     socket.onopen = () => {
       console.log("test");
     };
@@ -16,7 +19,7 @@ function HomePage() {
     return () => {
       socket.close();
     };
-  }, [data]);
+  }, []);
 
   return (
     <>
