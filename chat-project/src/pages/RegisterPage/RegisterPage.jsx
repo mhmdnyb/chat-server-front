@@ -142,7 +142,7 @@ function RegisterPage() {
           </h2>
           <div>
             <input
-              autoComplete="off"
+              autoComplete="username"
               type="text"
               name="username"
               id="username"
@@ -153,6 +153,7 @@ function RegisterPage() {
 
           <div>
             <input
+              autoComplete="new-password"
               name="password"
               type={type}
               id="password"
