@@ -37,9 +37,6 @@ function Dashboard() {
     setUserName();
   }, []);
 
-  {
-    document.querySelector("body").style.backgroundColor = "#6366f1";
-  }
   return (
     <>
       <Header isLoggedIn={true}></Header>

@@ -4,9 +4,7 @@ import SettingModal from "../../components/SettingModal/SettingModal.jsx";
 import { useState } from "react";
 function HomePage() {
   const [setting, setSetting] = useState(false);
-  {
-    document.querySelector("body").style.backgroundColor = "#6366f1";
-  }
+
   return (
     <>
       <title>Home</title>
