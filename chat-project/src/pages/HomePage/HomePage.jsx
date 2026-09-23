@@ -1,25 +1,11 @@
 import "./HomePage.css";
-import ChatMessage from "../../components/ChatMessage/ChatMessage.jsx";
+
 import SettingModal from "../../components/SettingModal/SettingModal.jsx";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import ChatSection from "../../components/ChatSection/ChatSection.jsx";
 
 function HomePage() {
   const [setting, setSetting] = useState(false);
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    const socket = new WebSocket(
-      `http://localhost:8080/ws?token=${document.cookie.split("=")[1]}/user/queue/home`,
-    );
-    socket.onopen = () => {
-      console.log("test");
-    };
-    socket.onmessage = (e) => {
-      setData([...data, ...JSON.parse(e.data)]);
-    };
-    return () => {
-      socket.close();
-    };
-  }, []);
 
   return (
     <>
@@ -64,15 +50,7 @@ function HomePage() {
               id="root"
               className="w-full flex-1 overflow-y-auto mt-4 px-0.5 text-tenpercent"
             >
-              {data.map((message, index) => {
-                return (
-                  <ChatMessage
-                    key={index}
-                    name={message.name}
-                    lastMsg={message.lastMessage}
-                  ></ChatMessage>
-                );
-              })}
+              <ChatSection></ChatSection>
             </section>
 
             <svg
